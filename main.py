@@ -249,14 +249,14 @@ class Home(Screen):
         #self.mediaplayer_btn.bind(on_press=lambda x: self.go_media('media','left'))
 
         #Info Box 
-        info_box = BoxLayout(orientation='vertical', size_hint_y=None, height=75, padding=[12, 12])
+        info_box = BoxLayout(orientation='vertical', size_hint_y=None, height=85, padding=[12, 12])
         with info_box.canvas.before:
             Color(0.95, 0.85, 0.65, 0.9)
             self.info_bg = RoundedRectangle(pos=info_box.pos, size=info_box.size, radius=[10])
         info_box.bind(pos=self._update_info_bg, size=self._update_info_bg)
         
         info_text = Label(
-            text="[b]Note:[/b] Downloads are saved to your Downloads folder \nDifferent qualities saved as separate files \nNotifications will keep you updated",
+            text="[b]Note:[/b] Downloads are saved to your Downloads folder \nDifferent qualities saved as separate files \nNotifications will keep you updated\ngithub.com/neonhydrogennh2-dotcom",
             font_size='13sp',
             font_name="PirataOne",
             markup=True,
