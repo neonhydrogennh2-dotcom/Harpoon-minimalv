@@ -5,16 +5,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/cache@v4
+      
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncursesw5-dev libtinfo6 cmake libffi-dev libssl-dev
+          
+      - name: Build APK  
+        uses: digreatbrian/buildozer-action@v2
         with:
-          path: ~/.buildozer
-          key: ${{ runner.os }}-buildozer-${{ hashFiles('buildozer.spec') }}
-      - uses: digreatbrian/buildozer-action@v2
-        with:
-          command: buildozer -v android debug
-        env: 
-            BUILDOZER_LOG_LEVEL: 2
-      - uses: actions/upload-artifact@v4
+          buildozer-cmd: buildozer android debug
+          
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
           name: Harpoon-APK
           path: ./bin/*.apk
